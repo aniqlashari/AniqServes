@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aniq Serves - Admin Panel</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container">
+            <div class="logo">Aniq Serves</div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="register.html">Register</a>
+                <a href="admin.html" class="active">Admin</a>
+            </div>
+        </div>
+    </nav>
+
+    
+    <div id="loginScreen" class="form-page">
+        <div class="container">
+            <div class="form-container" style="max-width: 400px;">
+                <h1>Admin Login</h1>
+                <p class="form-subtitle">Enter your credentials to access the admin panel</p>
+                
+                <div id="loginError" class="message error-message" style="display: none;"></div>
+
+                <form id="loginForm">
+                    <div class="form-group">
+                        <label for="adminUsername">Username</label>
+                        <input type="text" id="adminUsername" name="username" required placeholder="Enter username">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="adminPassword">Password</label>
+                        <input type="password" id="adminPassword" name="password" required placeholder="Enter password">
+                    </div>
+
+                    <button type="submit" class="btn btn-primary btn-large">Login</button>
+                </form>
+
+
+            </div>
+        </div>
+    </div>
+
+    
+    <div id="adminPanel" style="display: none;">
+        <div class="admin-header">
+            <div class="container">
+                <h1>Admin Dashboard</h1>
+                <div class="admin-buttons">
+                    <button id="refreshBtn" class="btn btn-primary">🔄 Refresh Data</button>
+                    <button id="logoutBtn" class="btn btn-secondary">Logout</button>
+                </div>
+            </div>
+        </div>
+
+        <main class="admin-content">
+            <div class="container">
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <h3>Total Clients</h3>
+                        <p class="stat-number" id="totalClients">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>New Today</h3>
+                        <p class="stat-number" id="newToday">0</p>
+                    </div>
+                    <div class="stat-card">
+                        <h3>This Week</h3>
+                        <p class="stat-number" id="thisWeek">0</p>
+                    </div>
+                </div>
+
+                <div class="clients-section">
+                    <div class="section-header">
+                        <h2>Registered Clients</h2>
+                        <div class="section-actions">
+                            <input type="text" id="searchInput" placeholder="Search clients..." class="search-input">
+                            <button id="exportBtn" class="btn btn-secondary">Export Data</button>
+                            <button id="clearAllBtn" class="btn btn-danger">Clear All</button>
+                        </div>
+                    </div>
+
+                    <div id="clientsContainer" class="clients-table-container">
+                        <p class="no-data">No clients registered yet.</p>
+                    </div>
+                </div>
+
+                <div class="ratings-section">
+                    <div class="section-header">
+                        <h2>Client Ratings & Reviews</h2>
+                        <div class="section-actions">
+                            <input type="text" id="ratingSearchInput" placeholder="Search ratings..." class="search-input">
+                            <button id="exportRatingsBtn" class="btn btn-secondary">Export Ratings</button>
+                            <button id="clearRatingsBtn" class="btn btn-danger">Clear Ratings</button>
+                        </div>
+                    </div>
+
+                    <div class="ratings-stats-grid">
+                        <div class="rating-stat">
+                            <h4>Average Rating</h4>
+                            <p class="rating-value" id="adminAvgRating">N/A</p>
+                        </div>
+                        <div class="rating-stat">
+                            <h4>Overall Score</h4>
+                            <p class="rating-value" id="overallScore">N/A</p>
+                        </div>
+                        <div class="rating-stat">
+                            <h4>Total Ratings</h4>
+                            <p class="rating-value" id="adminTotalRatings">0</p>
+                        </div>
+                        <div class="rating-stat">
+                            <h4>Satisfaction Rate</h4>
+                            <p class="rating-value" id="satisfactionRate">0%</p>
+                        </div>
+                    </div>
+
+                    <div class="rating-breakdown">
+                        <h4>Rating Distribution</h4>
+                        <div class="rating-breakdown-grid">
+                            <div class="rating-breakdown-item">
+                                <span>5★</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress5" style="background-color: #10b981;"></div>
+                                </div>
+                                <span id="percent5">0%</span>
+                            </div>
+                            <div class="rating-breakdown-item">
+                                <span>4★</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress4" style="background-color: #6ee7b7;"></div>
+                                </div>
+                                <span id="percent4">0%</span>
+                            </div>
+                            <div class="rating-breakdown-item">
+                                <span>3★</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress3" style="background-color: #fbbf24;"></div>
+                                </div>
+                                <span id="percent3">0%</span>
+                            </div>
+                            <div class="rating-breakdown-item">
+                                <span>2★</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress2" style="background-color: #f97316;"></div>
+                                </div>
+                                <span id="percent2">0%</span>
+                            </div>
+                            <div class="rating-breakdown-item">
+                                <span>1★</span>
+                                <div class="progress-bar">
+                                    <div class="progress-fill" id="progress1" style="background-color: #ef4444;"></div>
+                                </div>
+                                <span id="percent1">0%</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="ratingsContainer" class="ratings-container">
+                        <p class="no-data">No ratings received yet.</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 Aniq Serves. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="admin.js"></script>
+</body>
+</html>
